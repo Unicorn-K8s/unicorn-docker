@@ -1,14 +1,14 @@
-# Unofficial Docker container for [UnicornLoadBalancer](https://github.com/UnicornTranscoder/UnicornLoadBalancer)
+# Unofficial Docker container for [UnicornLoadBalancer](https://github.com/UnicornTranscoder/UnicornLoadBalancer) and forked from [magn2o's repo](https://github.com/magn2o/unicorn-docker) for use in the [UnicornTranscoder Helm Chart](https://github.com/Unicorn-K8s/UnicornTrancoder-chart)
 
-I created these containers in an effort to make deploying [UnicornTranscoder](https://github.com/UnicornTranscoder) quick and painless in a docker environment. The unicorn-loadbalancer container includes both UnicornLoadBalancer *as well as* UnicornFFMPEG. In addition to this container, you will also need at least one instance of [unicorn-transcoder](https://hub.docker.com/r/magn2o/unicorn-transcoder).
+I created these containers in an effort to make deploying [UnicornTranscoder](https://github.com/UnicornTranscoder) quick and painless in a docker/k8s environment. The unicorn-loadbalancer container includes both UnicornLoadBalancer *as well as* UnicornFFMPEG. In addition to this container, you will also need at least one instance of [unicorn-transcoder](https://hub.docker.com/r/donicrosby/unicorn-transcoder).
 
-# magn2o/unicorn-loadbalancer
+# donicrosby/unicorn-loadbalancer
 
 Ideally, this container should be used behind a reverse SSL proxy.
 
 ## Usage
 
-It is strongly advised to use this within a proper [docker-compose](https://github.com/magn2o/unicorn-docker/blob/master/docker-compose.yml.template) configuration. However, should you wish to do things the hard way, please see below:
+It is strongly advised to use this within a proper [docker-compose](https://github.com/Unicorn-K8s/unicorn-docker/blob/master/docker-compose.yml.template) configuration. However, should you wish to do things the hard way, please see below:
 
 **Note**: You will want to ensure that you have a Plex container already configured and running before launching a load balancer.
 
@@ -29,10 +29,10 @@ docker run \
 -v [path]:/usr/lib/plexmediaserver \
 -v [path]:/config \
 -v [path]:/media:ro \
-magn2o/unicorn-loadbalancer
+donicrosby/unicorn-loadbalancer
 ~~~
 
-# magn2o/unicorn-transcoder
+# donicrosby/unicorn-transcoder
 
 One of the unique features of this container is that it will automagically identify the Plex version and necessary codec builds at runtime. This means that you can update your Plex server at will and then simply restart this container to **maintain version parity without any manual edits**.
 
@@ -49,5 +49,5 @@ docker run \
 -e INSTANCE_ADDRESS="http://[hostipaddress]:3000" \
 -e PLEX_TOKEN="[x-plex-token]"
 -h [hostname] \
-magn2o/unicorn-transcoder
+donicrosby/unicorn-transcoder
 ~~~
