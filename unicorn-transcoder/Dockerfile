@@ -21,8 +21,9 @@ RUN \
   ln -s /lib/libc.musl-x86_64.so.1 /usr/glibc-compat/lib/libc.musl-x86_64.so.1 && \
   addgroup --system --gid=${PLEX_GID} plex && \
   adduser --system --uid=${PLEX_UID} --ingroup=plex plex && \
-  chmod 777 /opt && \
-  su -s /bin/sh -c "git -C /opt clone https://github.com/UnicornTranscoder/UnicornTranscoder.git; npm install --prefix=${UNICORN_PREFIX} lzma-native" plex && \
+  git -C /opt clone https://github.com/UnicornTranscoder/UnicornTranscoder.git && \
+  npm config set cache ${UNICORN_PREFIX}/.npm && \
+  npm install --prefix=${UNICORN_PREFIX} && \
   apk del git && \
   rm -rf /var/cache/apk/* /tmp/*
 
