@@ -10,4 +10,4 @@ if [[ $(file -b --mime-type ${LIBFAKE_AVI_DECODER}) = "text/html" ]]; then
   curl -J -L -o ${LIBFAKE_AVI_DECODER} https://downloads.plex.tv/codecs/e944d3a-1309/linux-ubuntu-x86_64/libfake_avi_decoder.so
 fi
 
-chown -R plex:plex ${UNICORN_PREFIX}
+chown -R plex:plex /opt
