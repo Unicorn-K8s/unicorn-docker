@@ -1,2 +1,2 @@
 /etc/services.d/*/run false root 0755 0755
-/etc/services.d/*/start-transcoder.sh false plex 0755 0755
+/etc/services.d/*/start-transcoder.sh false root 0755 0755
