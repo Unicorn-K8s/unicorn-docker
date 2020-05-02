@@ -1,7 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-function runTranscoder(){
-  npm start --prefix=/opt/UnicornTranscoder
-}
-
-exec s6-setuidgid plex runTranscoder
+exec s6-setuidgid plex npm start --prefix=/opt/UnicornTranscoder

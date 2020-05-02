@@ -29,8 +29,6 @@ if [ ! -z "${PLEX_GID}" ]; then
     groupmod -o -g "${PLEX_GID}" plex
   fi
 fi
-
-chown -R ${UNICORN_PREFIX}
 }
 
 if [ -z "${PLEX_BUILD}" ]; then
