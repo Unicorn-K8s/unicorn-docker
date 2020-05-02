@@ -11,4 +11,4 @@ if [[ $(file -b --mime-type ${LIBFAKE_AVI_DECODER}) = "text/html" ]]; then
 fi
 
 chown plex:plex /opt
-find /opt | xargs -P $(nproc) chown plex:plex
+find /opt -print0 | xargs -P $(nproc) -0 chown plex:plex
