@@ -3,12 +3,14 @@ MAINTAINER donicrosby
 
 ARG GLIBC_VERSION="2.29-r0"
 ARG S6_OVERLAY_VERSION="1.22.1.0"
+ARG PLEX_UID="1000"
+ARG PLEX_GID="1000"
 
 ENV \
   PLEX_ARCH="amd64" \
-  UNICORN_PREFIX="/opt/UnicornTranscoder"
-  PLEX_UID="1000"
-  PLED_GID="1000"
+  UNICORN_PREFIX="/opt/UnicornTranscoder" \
+  PLEX_UID=${PLEX_UID} \
+  PLED_GID=${PLEX_GID}
 
 RUN \
   apk add --no-cache npm git curl libxml2-utils binutils file shadow && \
@@ -19,8 +21,8 @@ RUN \
   ln -s /lib/libc.musl-x86_64.so.1 /usr/glibc-compat/lib/libc.musl-x86_64.so.1 && \
   git -C /opt clone https://github.com/UnicornTranscoder/UnicornTranscoder.git && \
   npm install --prefix=${UNICORN_PREFIX} && \
-  addgroup --gid ${PLEX_GID} --system plex && \
-  adduser --home=${UNICORN_PREFIX} --uid ${PLEX_UID} --ingroup plex --system plex && \
+  addgroup --system --gid=${PLEX_GID} plex && \
+  adduser --system --home=${UNICORN_PREFIX} --uid=${PLEX_UID} --ingroup=plex plex && \
   apk del git && \
   rm -rf /var/cache/apk/* /tmp/*
 
