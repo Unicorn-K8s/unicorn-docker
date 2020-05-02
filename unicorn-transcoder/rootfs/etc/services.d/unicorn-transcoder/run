@@ -1,2 +1,7 @@
 #!/usr/bin/with-contenv sh
-npm start --prefix=/opt/UnicornTranscoder
+
+function runTranscoder(){
+  npm start --prefix=/opt/UnicornTranscoder
+}
+
+exec s6-setuidgid plex runTranscoder
