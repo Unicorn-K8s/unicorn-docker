@@ -1,3 +1,4 @@
 #!/usr/bin/with-contenv sh
 
+echo "Starting Transcoder"
 exec s6-setuidgid plex /etc/services.d/unicorn-transcoder/start-transcoder.sh
