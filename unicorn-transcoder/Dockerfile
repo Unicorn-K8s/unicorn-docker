@@ -10,7 +10,8 @@ ENV \
   PLEX_UID="1000" \
   PLEX_GID="1000" \
   PLEX_HOME="${PLEX_HOME}" \
-  UNICORN_PREFIX="${PLEX_HOME}/UnicornTranscoder"
+  UNICORN_PREFIX="${PLEX_HOME}/UnicornTranscoder" \
+  XDG_CONFIG_HOME="${PLEX_HOME}/.config"
 
 RUN \
   apk add --no-cache npm git curl libxml2-utils binutils file shadow && \

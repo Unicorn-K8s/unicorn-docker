@@ -29,6 +29,9 @@ if [ ! -z "${PLEX_GID}" ]; then
     groupmod -o -g "${PLEX_GID}" plex
   fi
 fi
+
+chown ${PLEX_HOME}
+find ${PLEX_HOME} ! -user plex ! -group plex -print0 | xargs -P $(nproc) -0 chown plex:plex
 }
 
 if [ -z "${PLEX_BUILD}" ]; then

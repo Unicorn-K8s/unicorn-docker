@@ -9,5 +9,3 @@ exec s6-setuidgid plex npm run install plex codecs eae cache --prefix=${UNICORN_
 if [[ $(file -b --mime-type ${LIBFAKE_AVI_DECODER}) = "text/html" ]]; then
   exec s6-setuidgid plex curl -J -L -o ${LIBFAKE_AVI_DECODER} https://downloads.plex.tv/codecs/e944d3a-1309/linux-ubuntu-x86_64/libfake_avi_decoder.so
 fi
-chown ${PLEX_HOME}
-find ${PLEX_HOME} ! -user plex ! -group plex -print0 | xargs -P $(nproc) -0 chown plex:plex
